@@ -37,6 +37,7 @@ Our system uses intelligent agents to:
 * `docs/` → Detailed documentation
 * `ppts/` → Presentations
 * `designs/` → Architecture diagrams
+* `meeting-notes/` → Meeting notes & discussion references 
 
 ---
 
