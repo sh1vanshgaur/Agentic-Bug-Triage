@@ -19,7 +19,6 @@ Our system uses intelligent agents to:
 * Fetch data from multiple systems in real-time
 * Analyze and classify issues
 * Provide a unified view
-* Assist in routing bugs to correct teams
 
 ---
 
@@ -28,7 +27,6 @@ Our system uses intelligent agents to:
 * Multi-repo ticket creation
 * Unified dashboard
 * Federated search
-* Automated routing
 
 ---
 
