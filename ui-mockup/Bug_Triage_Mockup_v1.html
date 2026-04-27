@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Bug Triage Tool — UI Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#F0F2F5;
+  --white:#FFFFFF;
+  --border:#DDE2EA;
+  --text:#1C2333;
+  --text2:#5A6478;
+  --text3:#9AA3B5;
+  --teal:#0A7C6E;
+  --teal-lt:#E5F4F2;
+  --teal-bd:#9ECEC9;
+  --blue:#1A56A0;
+  --blue-lt:#EBF2FB;
+  --blue-bd:#A8CAEA;
+  --amber:#8B5E0A;
+  --amber-lt:#FDF3E1;
+  --amber-bd:#DDB96A;
+  --purple:#5B3FA0;
+  --purple-lt:#F0ECFB;
+  --purple-bd:#C4B0EA;
+  --red:#B91C1C;
+  --red-lt:#FEF2F2;
+  --red-bd:#FCA5A5;
+  --green:#166534;
+  --green-lt:#F0FDF4;
+  --green-bd:#86EFAC;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* ── TOPBAR ── */
+.topbar{height:54px;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:12px;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-box{width:32px;height:32px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;font-family:'JetBrains Mono',monospace}
+.logo-name{font-size:14px;font-weight:600;color:var(--text)}
+.logo-sub{font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace}
+.tb-sep{width:1px;height:26px;background:var(--border)}
+.tb-nav{display:flex;gap:2px}
+.tb-nav a{padding:6px 14px;border-radius:7px;font-size:12px;font-weight:500;color:var(--text2);cursor:pointer;text-decoration:none}
+.tb-nav a.active{background:var(--teal-lt);color:var(--teal);font-weight:600}
+.tb-nav a:hover:not(.active){background:var(--bg)}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.chip{font-size:11px;padding:4px 11px;border-radius:20px;font-family:'JetBrains Mono',monospace;border:1px solid var(--border);background:var(--bg);color:var(--text3);display:flex;align-items:center;gap:5px}
+.chip.on{background:var(--green-lt);border-color:var(--green-bd);color:var(--green)}
+.cdot{width:6px;height:6px;border-radius:50%;background:currentColor}
+
+/* ── SCREENS ── */
+.screen{display:none}.screen.show{display:block}
+
+/* ════════════════════
+   SCREEN 1 — INPUT
+════════════════════ */
+.input-screen{
+  min-height:calc(100vh - 54px);
+  display:flex;align-items:center;justify-content:center;
+  padding:40px 20px;
+}
+.input-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:48px 56px;
+  width:100%;max-width:580px;
+  box-shadow:0 4px 24px rgba(0,0,0,.06);
+}
+.ic-title{font-size:24px;font-weight:700;color:var(--text);margin-bottom:6px}
+.ic-sub{font-size:13px;color:var(--text2);margin-bottom:36px;line-height:1.6}
+.field-label{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px}
+.field-row{display:flex;gap:10px;margin-bottom:18px}
+.source-select{
+  padding:0 14px;height:46px;
+  background:var(--bg);border:1.5px solid var(--border);border-radius:9px;
+  font-family:'Sora',sans-serif;font-size:13px;color:var(--text);
+  cursor:pointer;outline:none;min-width:130px;
+}
+.bug-input{
+  flex:1;height:46px;padding:0 16px;
+  background:var(--white);border:1.5px solid var(--border);border-radius:9px;
+  font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text);
+  outline:none;transition:border-color .2s;
+}
+.bug-input:focus{border-color:var(--teal)}
+.triage-btn{
+  width:100%;height:50px;
+  background:var(--teal);border:none;border-radius:10px;
+  color:#fff;font-family:'Sora',sans-serif;font-size:15px;font-weight:600;
+  cursor:pointer;transition:background .15s,transform .1s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.triage-btn:hover{background:#0A6B5E;transform:translateY(-1px)}
+.triage-btn:active{transform:translateY(0)}
+.ic-hint{font-size:11px;color:var(--text3);text-align:center;margin-top:14px;font-family:'JetBrains Mono',monospace}
+
+/* ════════════════════
+   SCREEN 2 — LOADING
+════════════════════ */
+.loading-screen{
+  min-height:calc(100vh - 54px);
+  display:flex;align-items:center;justify-content:center;
+  padding:40px 20px;
+}
+.loading-card{
+  background:var(--white);border:1px solid var(--border);border-radius:16px;
+  padding:44px 48px;width:100%;max-width:560px;
+  box-shadow:0 4px 24px rgba(0,0,0,.06);
+}
+.lc-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:4px}
+.lc-bug{font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--teal);margin-bottom:32px}
+.agent-list{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
+.agent-row{display:flex;align-items:center;gap:14px}
+.agent-ico{
+  width:38px;height:38px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;
+  border:1.5px solid var(--border);background:var(--bg);color:var(--text3);
+  transition:all .3s;
+}
+.agent-ico.running{border-color:var(--teal-bd);background:var(--teal-lt);color:var(--teal);animation:spin-border 1s linear infinite}
+.agent-ico.done{border-color:var(--green-bd);background:var(--green-lt);color:var(--green)}
+.agent-ico.wait{opacity:.4}
+@keyframes spin-border{0%,100%{box-shadow:0 0 0 2px var(--teal-lt)}50%{box-shadow:0 0 0 3px var(--teal-bd)}}
+.agent-info{flex:1}
+.agent-name{font-size:13px;font-weight:600;color:var(--text)}
+.agent-desc{font-size:11px;color:var(--text3);margin-top:2px}
+.agent-status{font-size:11px;font-family:'JetBrains Mono',monospace;font-weight:500}
+.agent-status.running{color:var(--teal)}
+.agent-status.done{color:var(--green)}
+.agent-status.wait{color:var(--text3)}
+.parallel-note{
+  font-size:10px;font-family:'JetBrains Mono',monospace;
+  color:var(--blue);
+  padding:6px 10px;background:var(--blue-lt);border:1px solid var(--blue-bd);
+  border-radius:6px;margin-left:52px;margin-top:-8px;
+}
+.prog-bar-wrap{background:var(--bg);border-radius:20px;height:6px;overflow:hidden}
+.prog-bar-fill{height:100%;background:linear-gradient(90deg,var(--teal),#2DD4BF);border-radius:20px;width:0%;transition:width .4s ease}
+.prog-label{display:flex;justify-content:space-between;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text3);margin-top:7px}
+
+/* ════════════════════
+   SCREEN 3 — RESULTS
+════════════════════ */
+.results-screen{padding:20px 28px 48px}
+.results-top{
+  display:flex;align-items:center;gap:12px;
+  background:var(--white);border:1px solid var(--border);border-radius:10px;
+  padding:14px 20px;margin-bottom:18px;
+}
+.rt-bug{font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px}
+.rt-bug code{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue)}
+.rt-time{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text3);margin-left:auto;display:flex;align-items:center;gap:6px}
+.rt-time .cdot{background:var(--green);width:7px;height:7px}
+.panels-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;animation:fadeUp .4s ease both}
+.panel:nth-child(1){animation-delay:.05s}.panel:nth-child(2){animation-delay:.15s}
+.panel:nth-child(3){animation-delay:.25s}.panel:nth-child(4){animation-delay:.35s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.p-teal{border-top:3px solid var(--teal)}
+.p-blue{border-top:3px solid var(--blue)}
+.p-amber{border-top:3px solid var(--amber)}
+.p-purple{border-top:3px solid var(--purple)}
+.panel-hdr{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px}
+.panel-num{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.p-teal .panel-num{background:var(--teal-lt);color:var(--teal);border:1px solid var(--teal-bd)}
+.p-blue .panel-num{background:var(--blue-lt);color:var(--blue);border:1px solid var(--blue-bd)}
+.p-amber .panel-num{background:var(--amber-lt);color:var(--amber);border:1px solid var(--amber-bd)}
+.p-purple .panel-num{background:var(--purple-lt);color:var(--purple);border:1px solid var(--purple-bd)}
+.panel-title{font-size:13px;font-weight:700;color:var(--text);flex:1}
+.panel-src{font-size:10px;font-family:'JetBrains Mono',monospace;padding:3px 9px;border-radius:20px}
+.p-teal .panel-src{background:var(--teal-lt);color:var(--teal);border:1px solid var(--teal-bd)}
+.p-blue .panel-src{background:var(--blue-lt);color:var(--blue);border:1px solid var(--blue-bd)}
+.p-amber .panel-src{background:var(--amber-lt);color:var(--amber);border:1px solid var(--amber-bd)}
+.p-purple .panel-src{background:var(--purple-lt);color:var(--purple);border:1px solid var(--purple-bd)}
+.panel-body{padding:16px 18px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;max-height:400px}
+
+/* Content inside panels */
+.bug-title{font-size:14px;font-weight:600;color:var(--text);line-height:1.4}
+.meta-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2)}
+.meta-key{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);min-width:80px}
+.meta-val{font-size:12px;color:var(--text)}
+.pill-badge{display:inline-block;font-size:10px;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:4px;font-weight:500}
+.pb-red{background:var(--red-lt);color:var(--red);border:1px solid var(--red-bd)}
+.pb-amber{background:var(--amber-lt);color:var(--amber);border:1px solid var(--amber-bd)}
+.pb-blue{background:var(--blue-lt);color:var(--blue);border:1px solid var(--blue-bd)}
+.pb-green{background:var(--green-lt);color:var(--green);border:1px solid var(--green-bd)}
+.pb-purple{background:var(--purple-lt);color:var(--purple);border:1px solid var(--purple-bd)}
+.divider{height:1px;background:var(--border)}
+.sec{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+.case-row{display:flex;align-items:center;gap:8px;padding:8px 11px;background:var(--bg);border:1px solid var(--border);border-radius:7px;font-size:12px}
+.case-id{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text)}
+.case-name{color:var(--text2);flex:1}
+.open-link{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--blue);padding:2px 8px;border:1px solid var(--blue-bd);border-radius:4px;cursor:pointer;background:var(--blue-lt);white-space:nowrap}
+.issue-card{padding:10px 13px;background:var(--bg);border:1px solid var(--border);border-radius:8px;display:flex;flex-direction:column;gap:5px}
+.issue-top{display:flex;align-items:center;gap:7px}
+.src-tag{font-size:9px;font-family:'JetBrains Mono',monospace;padding:2px 7px;border-radius:3px;font-weight:700}
+.st-bz{background:var(--amber-lt);color:var(--amber);border:1px solid var(--amber-bd)}
+.st-gh{background:var(--purple-lt);color:var(--purple);border:1px solid var(--purple-bd)}
+.issue-id{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2)}
+.issue-title{font-size:12px;color:var(--text);line-height:1.4}
+.issue-status{font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace}
+.kb-card{display:flex;gap:10px;padding:9px 12px;background:var(--bg);border:1px solid var(--border);border-radius:8px;align-items:flex-start}
+.kb-ico{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.kb-ico.kb{background:var(--amber-lt);color:var(--amber);border:1px solid var(--amber-bd)}
+.kb-ico.rb{background:var(--blue-lt);color:var(--blue);border:1px solid var(--blue-bd)}
+.kb-text{font-size:12px;color:var(--text);line-height:1.4;flex:1}
+.kb-from{font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-top:3px}
+.ai-row{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--bg);border:1px solid var(--border);border-radius:8px}
+.ai-n{width:22px;height:22px;border-radius:5px;background:var(--purple-lt);border:1px solid var(--purple-bd);color:var(--purple);font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ai-t{font-size:12px;color:var(--text2);line-height:1.5;flex:1}
+.sev-box{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--purple-lt);border:1px solid var(--purple-bd);border-radius:8px}
+.teams-wrap{display:flex;flex-wrap:wrap;gap:6px}
+.team-tag{font-size:11px;padding:4px 11px;border-radius:20px;background:var(--bg);border:1px solid var(--border);color:var(--text2)}
+.llm-row{display:flex;align-items:center;gap:5px}
+.llm-c{font-size:10px;font-family:'JetBrains Mono',monospace;padding:3px 9px;border-radius:4px;background:var(--purple-lt);color:var(--purple);border:1px solid var(--purple-bd)}
+.llm-c.dim{opacity:.35}
+.note-bar{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--text3);padding:7px 11px;background:var(--bg);border:1px solid var(--border);border-radius:6px}
+
+/* ── HISTORY SCREEN ── */
+.history-screen{padding:28px 28px 48px}
+.page-heading{font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px}
+.page-sub{font-size:13px;color:var(--text2);margin-bottom:24px}
+.history-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.history-table th{padding:11px 16px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;background:var(--bg);border-bottom:1px solid var(--border)}
+.history-table td{padding:13px 16px;font-size:12px;color:var(--text2);border-bottom:1px solid var(--border)}
+.history-table tr:last-child td{border-bottom:none}
+.history-table tr:hover td{background:#fafbfc;cursor:pointer}
+.ht-id{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);font-weight:500}
+.ht-title{color:var(--text);font-weight:500;max-width:280px}
+.ht-status{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-family:'JetBrains Mono',monospace;padding:3px 9px;border-radius:20px}
+.hs-done{background:var(--green-lt);color:var(--green);border:1px solid var(--green-bd)}
+.hs-fail{background:var(--red-lt);color:var(--red);border:1px solid var(--red-bd)}
+.ht-time{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3)}
+
+/* ── TOKEN SETTINGS SCREEN ── */
+.token-screen{padding:28px 28px 48px;max-width:700px}
+.token-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.tok-ico{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.tok-info{flex:1}
+.tok-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+.tok-endpoint{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--text3)}
+.tok-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3);letter-spacing:3px;padding:6px 11px;background:var(--bg);border:1px solid var(--border);border-radius:6px;min-width:180px;text-align:center}
+.tok-status{display:flex;align-items:center;gap:5px;font-size:11px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.tok-edit{font-size:11px;padding:6px 14px;border-radius:7px;border:1px solid var(--border);background:var(--bg);color:var(--text2);cursor:pointer;font-family:'Sora',sans-serif;white-space:nowrap}
+.tok-edit:hover{background:var(--teal-lt);border-color:var(--teal-bd);color:var(--teal)}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-box">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="12" cy="13" rx="6" ry="7" fill="white" opacity="0.9"/>
+        <ellipse cx="12" cy="13" rx="4" ry="5" fill="#0A7C6E" opacity="0.4"/>
+        <circle cx="10" cy="11" r="1.2" fill="white"/>
+        <circle cx="14" cy="11" r="1.2" fill="white"/>
+        <line x1="6" y1="10" x2="2" y2="8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="6" y1="13" x2="2" y2="13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="6" y1="16" x2="2" y2="18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="18" y1="10" x2="22" y2="8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="18" y1="13" x2="22" y2="13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="18" y1="16" x2="22" y2="18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M9 6 Q12 3 15 6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div>
+      <div class="logo-name">Bug Triage Tool</div>
+      <div class="logo-sub">Agentic Bug Triage System</div>
+    </div>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-nav">
+    <a class="active" onclick="switchNav(this,'s-input')">New Triage</a>
+    <a onclick="switchNav(this,'s-history')">History</a>
+    <a onclick="switchNav(this,'s-tokens')">Token Settings</a>
+  </div>
+  <div class="tb-right">
+    <div class="chip on"><div class="cdot"></div>5 systems connected</div>
+    <div class="chip">alex_m</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     SCREEN 1 — INPUT
+══════════════════════════════ -->
+<div class="screen show" id="s-input">
+  <div class="input-screen">
+    <div class="input-card">
+      <div class="ic-title">Start a Bug Triage</div>
+      <div style="margin-bottom:24px"></div>
+
+      <div class="field-label">Source System</div>
+      <div class="field-row">
+        <select class="source-select">
+          <option>JIRA Cloud</option>
+          <option>Bugzilla</option>
+          <option>GitHub</option>
+        </select>
+        <input class="bug-input" placeholder="e.g. STO-1089" value="STO-1089"/>
+      </div>
+
+      <button class="triage-btn" onclick="goLoading()">
+        ▶&nbsp; Run Triage
+      </button>
+      <div class="ic-hint">Triage runs in ~10–15 seconds · data is never stored</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     SCREEN 2 — LOADING
+══════════════════════════════ -->
+<div class="screen" id="s-loading">
+  <div class="loading-screen">
+    <div class="loading-card">
+      <div class="lc-title">Running triage pipeline…</div>
+      <div class="lc-bug">Bug: STO-1089 · JIRA Cloud</div>
+
+      <div class="agent-list">
+
+        <!-- Agent 1 — runs first alone -->
+        <div class="agent-row">
+          <div class="agent-ico done" id="ico1">①</div>
+          <div class="agent-info">
+            <div class="agent-name">Context Agent</div>
+            <div class="agent-desc">Fetching bug details from JIRA + case notes from Customer Portal</div>
+          </div>
+          <div class="agent-status done" id="st1">✓ 2.1s</div>
+        </div>
+
+        <!-- Parallel note -->
+        <div class="parallel-note" id="par-note" style="display:none">
+          ↳ Agents 2 & 3 running in parallel using bug context from Agent 1
+        </div>
+
+        <!-- Agent 2 — parallel -->
+        <div class="agent-row">
+          <div class="agent-ico wait" id="ico2">②</div>
+          <div class="agent-info">
+            <div class="agent-name">Cross-System Fetch Agent</div>
+            <div class="agent-desc">Searching related issues in Bugzilla + GitHub</div>
+          </div>
+          <div class="agent-status wait" id="st2">Waiting</div>
+        </div>
+
+        <!-- Agent 3 — parallel -->
+        <div class="agent-row">
+          <div class="agent-ico wait" id="ico3">③</div>
+          <div class="agent-info">
+            <div class="agent-name">Enrichment Agent</div>
+            <div class="agent-desc">Searching KB articles + runbooks in Confluence</div>
+          </div>
+          <div class="agent-status wait" id="st3">Waiting</div>
+        </div>
+
+        <!-- Agent 4 — runs last -->
+        <div class="agent-row">
+          <div class="agent-ico wait" id="ico4">④</div>
+          <div class="agent-info">
+            <div class="agent-name">AI Synthesis</div>
+            <div class="agent-desc">Synthesising all results → LLM processing (Claude)</div>
+          </div>
+          <div class="agent-status wait" id="st4">Waiting</div>
+        </div>
+      </div>
+
+      <div class="prog-bar-wrap">
+        <div class="prog-bar-fill" id="prog"></div>
+      </div>
+      <div class="prog-label">
+        <span id="prog-label">Phase 1 — Context Agent running…</span>
+        <span id="prog-pct">0%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     SCREEN 3 — RESULTS
+══════════════════════════════ -->
+<div class="screen" id="s-results">
+  <div class="results-screen">
+
+    <!-- Top bar -->
+    <div class="results-top">
+      <div class="rt-bug">
+        Triage complete for <code>STO-1089</code>
+        <span class="pill-badge pb-blue">JIRA Cloud</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2)">StorageController NullPointerException — concurrent VM provisioning</div>
+      <div class="rt-time"><div class="cdot"></div>Completed in 10.7s</div>
+      <button onclick="goInput()" style="font-size:12px;font-family:'Sora',sans-serif;padding:7px 16px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text2);cursor:pointer;margin-left:8px">← New Triage</button>
+    </div>
+
+    <div class="panels-grid">
+
+      <!-- ── PANEL 1: BUG CONTEXT ── -->
+      <div class="panel p-teal">
+        <div class="panel-hdr">
+          <div class="panel-num">①</div>
+          <div class="panel-title">Bug Context</div>
+          <div class="panel-src">Context Agent · JIRA + Customer Portal</div>
+        </div>
+        <div class="panel-body">
+          <div class="bug-title">StorageController NullPointerException on concurrent VM provisioning</div>
+
+          <div style="display:flex;gap:7px;flex-wrap:wrap">
+            <span class="pill-badge pb-red">P1 — High</span>
+            <span class="pill-badge pb-amber">In Progress</span>
+            <span class="pill-badge pb-blue mono" style="font-size:11px">STO-1089</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div class="meta-row"><span class="meta-key">Component</span><span class="meta-val mono" style="font-size:11px">StorageController</span></div>
+            <div class="meta-row"><span class="meta-key">Assignee</span><span class="meta-val">R. Sharma</span></div>
+            <div class="meta-row"><span class="meta-key">Reporter</span><span class="meta-val">Acme Corp (Customer)</span></div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div>
+            <div class="sec">Customer Portal — Case Notes</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div class="case-row">
+                <div class="case-id">CASE-2891</div>
+                <div class="case-name">Acme Corp · 3 incidents</div>
+                <span class="pill-badge pb-red">Critical</span>
+                <span class="open-link">↗</span>
+              </div>
+              <div class="case-row">
+                <div class="case-id">CASE-2904</div>
+                <div class="case-name">GlobalTech · 1 incident</div>
+                <span class="pill-badge pb-amber">High</span>
+                <span class="open-link">↗</span>
+              </div>
+            </div>
+          </div>
+
+          <span class="open-link" style="align-self:flex-start;padding:5px 12px">↗ Open in JIRA</span>
+        </div>
+      </div>
+
+      <!-- ── PANEL 2: RELATED ISSUES ── -->
+      <div class="panel p-blue">
+        <div class="panel-hdr">
+          <div class="panel-num">②</div>
+          <div class="panel-title">Related Issues</div>
+          <div class="panel-src">Cross-System Fetch · Bugzilla + GitHub</div>
+        </div>
+        <div class="panel-body">
+
+          <div class="sec">Bugzilla — Bug Reports</div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div class="issue-card">
+              <div class="issue-top">
+                <span class="src-tag st-bz">Bugzilla</span>
+                <span class="issue-id">BUG-49201</span>
+                <span class="pill-badge pb-red" style="font-size:9px">P1</span>
+                <span class="open-link" style="margin-left:auto">↗</span>
+              </div>
+              <div class="issue-title">VM provisioning timeout under concurrent load — similar NPE trace</div>
+              <div class="issue-status">Status: Confirmed</div>
+            </div>
+            <div class="issue-card">
+              <div class="issue-top">
+                <span class="src-tag st-bz">Bugzilla</span>
+                <span class="issue-id">BUG-48977</span>
+                <span class="pill-badge pb-amber" style="font-size:9px">P2</span>
+                <span class="open-link" style="margin-left:auto">↗</span>
+              </div>
+              <div class="issue-title">DiskQuota.check() returns null on initialisation race</div>
+              <div class="issue-status">Status: Resolved · patch available</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="sec">GitHub — Issues & PRs</div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div class="issue-card">
+              <div class="issue-top">
+                <span class="src-tag st-gh">GitHub</span>
+                <span class="issue-id">PR #2841</span>
+                <span class="pill-badge pb-green" style="font-size:9px">Open</span>
+                <span class="open-link" style="margin-left:auto">↗</span>
+              </div>
+              <div class="issue-title">Fix: Add null guard in DiskQuota.check() for concurrent provisioning</div>
+              <div class="issue-status">Author: r-sharma · awaiting review</div>
+            </div>
+            <div class="issue-card">
+              <div class="issue-top">
+                <span class="src-tag st-gh">GitHub</span>
+                <span class="issue-id">Issue #1924</span>
+                <span class="pill-badge" style="font-size:9px;background:#F3F4F6;color:#6B7280;border:1px solid #D1D5DB">Closed</span>
+                <span class="open-link" style="margin-left:auto">↗</span>
+              </div>
+              <div class="issue-title">StorageController.allocate() not thread-safe under concurrent requests</div>
+              <div class="issue-status">Closed 14 days ago</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── PANEL 3: LINKED CONTEXT ── -->
+      <div class="panel p-amber">
+        <div class="panel-hdr">
+          <div class="panel-num">③</div>
+          <div class="panel-title">Linked Context</div>
+          <div class="panel-src">Enrichment Agent · Confluence</div>
+        </div>
+        <div class="panel-body">
+
+          <div class="sec">KB Articles</div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div class="kb-card">
+              <div class="kb-ico kb">KB</div>
+              <div>
+                <div class="kb-text">StorageController known NPE — apply patch STO-X before upgrading to v4.2</div>
+                <div class="kb-from">Confluence · Updated 3 days ago <span class="open-link" style="margin-left:6px">↗</span></div>
+              </div>
+            </div>
+            <div class="kb-card">
+              <div class="kb-ico kb">KB</div>
+              <div>
+                <div class="kb-text">VM provisioning timeout troubleshooting — concurrent operations limit</div>
+                <div class="kb-from">Confluence · Updated 1 week ago <span class="open-link" style="margin-left:6px">↗</span></div>
+              </div>
+            </div>
+            <div class="kb-card">
+              <div class="kb-ico kb">KB</div>
+              <div>
+                <div class="kb-text">ProLiant Gen10+ storage configuration for HA deployments</div>
+                <div class="kb-from">Confluence · Updated 2 weeks ago <span class="open-link" style="margin-left:6px">↗</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="sec">Runbooks</div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div class="kb-card">
+              <div class="kb-ico rb">RB</div>
+              <div>
+                <div class="kb-text">StorageController incident response — escalation path for NPE events</div>
+                <div class="kb-from">Confluence · /runbooks/SC-INCIDENT <span class="open-link" style="margin-left:6px">↗</span></div>
+              </div>
+            </div>
+            <div class="kb-card">
+              <div class="kb-ico rb">RB</div>
+              <div>
+                <div class="kb-text">VM provisioning rollback procedure — revert under concurrent load</div>
+                <div class="kb-from">Confluence · /runbooks/PROV-ROLLBACK <span class="open-link" style="margin-left:6px">↗</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── PANEL 4: AI SUMMARY ── -->
+      <div class="panel p-purple">
+        <div class="panel-hdr">
+          <div class="panel-num">④</div>
+          <div class="panel-title">AI Summary</div>
+          <div class="panel-src">AI Synthesis · LLM Processing</div>
+        </div>
+        <div class="panel-body">
+
+          <div class="sec">Suggested Severity</div>
+          <div class="sev-box">
+            <span class="pill-badge pb-red" style="font-size:12px;padding:4px 12px">P0 — Critical</span>
+            <span style="font-size:12px;color:var(--text2)">3 customer cases + open fix PR confirm severity upgrade</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="sec">Affected Teams</div>
+          <div class="teams-wrap">
+            <div class="team-tag">StorageController Team</div>
+            <div class="team-tag">VM Provisioning Platform</div>
+            <div class="team-tag">HPE Cloud Infrastructure</div>
+            <div class="team-tag">Customer Engineering</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="sec">Root Cause</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.75;padding:10px 13px;background:var(--bg);border-left:3px solid var(--purple);border-radius:0 7px 7px 0">
+            <span class="mono" style="font-size:11px;color:var(--purple)">DiskQuota.check()</span> is not thread-safe. Under concurrent provisioning requests it returns <span class="mono" style="font-size:11px;color:var(--red)">null</span>, and <span class="mono" style="font-size:11px;color:var(--purple)">StorageController.allocate()</span> does not guard against this — causing the NPE. PR #2841 contains the fix.
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="sec">Recommended Actions</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="ai-row"><div class="ai-n">1</div><div class="ai-t">Review and merge PR #2841 on GitHub — null guard in <span class="mono" style="font-size:11px">DiskQuota.check()</span></div></div>
+            <div class="ai-row"><div class="ai-n">2</div><div class="ai-t">Escalate to P0 and notify Customer Engineering for Acme Corp (CASE-2891)</div></div>
+            <div class="ai-row"><div class="ai-n">3</div><div class="ai-t">Apply temporary workaround from Confluence KB — limit concurrent provisioning threads</div></div>
+            <div class="ai-row"><div class="ai-n">4</div><div class="ai-t">Run regression tests per runbook SC-INCIDENT before production push</div></div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="sec">LLM Engine</div>
+          <div class="llm-row">
+            <div class="llm-c">Claude · active</div>
+            <span style="color:var(--text3);font-size:11px">→</span>
+            <div class="llm-c dim">Gemini · fallback</div>
+            <span style="color:var(--text3);font-size:11px">→</span>
+            <div class="llm-c dim">Llama 3 · offline</div>
+          </div>
+
+          <div class="note-bar">ⓘ AI suggestion only — engineer validation required</div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     SCREEN 4 — HISTORY
+══════════════════════════════ -->
+<div class="screen" id="s-history">
+  <div class="history-screen">
+    <div class="page-heading">Triage History</div>
+    <div class="page-sub">Past triage sessions run by you. Click any row to view results.</div>
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Bug ID</th>
+          <th>Source</th>
+          <th>Engineer</th>
+          <th>Duration</th>
+          <th>Status</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr onclick="rerunConfirm('STO-1089','JIRA Cloud')">
+          <td class="ht-id">STO-1089</td>
+          <td><span class="pill-badge pb-blue" style="font-size:9px">JIRA</span></td>
+          <td>alex_m</td>
+          <td class="ht-time">10.7s</td>
+          <td><span class="ht-status hs-done"><div class="cdot" style="background:var(--green);width:5px;height:5px;border-radius:50%"></div>Complete</span></td>
+          <td class="ht-time">Today 14:32</td>
+        </tr>
+        <tr onclick="rerunConfirm('BUG-49100','Bugzilla')">
+          <td class="ht-id">BUG-49100</td>
+          <td><span class="pill-badge pb-amber" style="font-size:9px">Bugzilla</span></td>
+          <td>Priya Nair</td>
+          <td class="ht-time">12.3s</td>
+          <td><span class="ht-status hs-done"><div class="cdot" style="background:var(--green);width:5px;height:5px;border-radius:50%"></div>Complete</span></td>
+          <td class="ht-time">Today 11:18</td>
+        </tr>
+        <tr onclick="rerunConfirm('INFRA-882','JIRA Cloud')">
+          <td class="ht-id">INFRA-882</td>
+          <td><span class="pill-badge pb-blue" style="font-size:9px">JIRA</span></td>
+          <td>Rahul Desai</td>
+          <td class="ht-time">9.1s</td>
+          <td><span class="ht-status hs-done"><div class="cdot" style="background:var(--green);width:5px;height:5px;border-radius:50%"></div>Complete</span></td>
+          <td class="ht-time">Yesterday 16:45</td>
+        </tr>
+        <tr onclick="rerunConfirm('STO-1074','JIRA Cloud')">
+          <td class="ht-id">STO-1074</td>
+          <td><span class="pill-badge pb-blue" style="font-size:9px">JIRA</span></td>
+          <td>alex_m</td>
+          <td class="ht-time">—</td>
+          <td><span class="ht-status hs-fail">✗ Failed</span></td>
+          <td class="ht-time">Yesterday 09:22</td>
+        </tr>
+        <tr onclick="rerunConfirm('PR #2801','GitHub')">
+          <td class="ht-id">PR #2801</td>
+          <td><span class="pill-badge pb-purple" style="font-size:9px">GitHub</span></td>
+          <td>Sneha Iyer</td>
+          <td class="ht-time">14.2s</td>
+          <td><span class="ht-status hs-done"><div class="cdot" style="background:var(--green);width:5px;height:5px;border-radius:50%"></div>Complete</span></td>
+          <td class="ht-time">24 Apr 17:05</td>
+        </tr>
+        <tr onclick="rerunConfirm('BUG-48910','Bugzilla')">
+          <td class="ht-id">BUG-48910</td>
+          <td><span class="pill-badge pb-amber" style="font-size:9px">Bugzilla</span></td>
+          <td>Priya Nair</td>
+          <td class="ht-time">11.8s</td>
+          <td><span class="ht-status hs-done"><div class="cdot" style="background:var(--green);width:5px;height:5px;border-radius:50%"></div>Complete</span></td>
+          <td class="ht-time">24 Apr 10:30</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     SCREEN 5 — TOKEN SETTINGS
+══════════════════════════════ -->
+<div class="screen" id="s-tokens">
+  <div class="history-screen">
+    <div class="page-heading">Token Settings</div>
+    <div class="page-sub">API tokens are encrypted with AES-256 before storage. Used by agents to query external systems on your behalf.</div>
+
+    <div class="token-card">
+      <div class="tok-ico" style="background:var(--blue-lt);color:var(--blue);border:1px solid var(--blue-bd)">J</div>
+      <div class="tok-info">
+        <div class="tok-name">JIRA Cloud</div>
+        <div class="tok-endpoint">hpe.atlassian.net · REST API v3 · Used by: Context Agent</div>
+      </div>
+      <div class="tok-val">••••••••••••••••••</div>
+      <div class="tok-status" style="color:var(--green)"><div class="cdot" style="background:var(--green);width:6px;height:6px;border-radius:50%"></div>Connected</div>
+      <button class="tok-edit">Edit</button>
+    </div>
+
+    <div class="token-card">
+      <div class="tok-ico" style="background:var(--amber-lt);color:var(--amber);border:1px solid var(--amber-bd)">BZ</div>
+      <div class="tok-info">
+        <div class="tok-name">Bugzilla</div>
+        <div class="tok-endpoint">bugzilla.hpe.com · REST API · Used by: Cross-System Fetch Agent</div>
+      </div>
+      <div class="tok-val">••••••••••••••••••</div>
+      <div class="tok-status" style="color:var(--green)"><div class="cdot" style="background:var(--green);width:6px;height:6px;border-radius:50%"></div>Connected</div>
+      <button class="tok-edit">Edit</button>
+    </div>
+
+    <div class="token-card">
+      <div class="tok-ico" style="background:var(--purple-lt);color:var(--purple);border:1px solid var(--purple-bd)">GH</div>
+      <div class="tok-info">
+        <div class="tok-name">GitHub</div>
+        <div class="tok-endpoint">api.github.com · Personal Access Token · Used by: Cross-System Fetch Agent</div>
+      </div>
+      <div class="tok-val">••••••••••••••••••</div>
+      <div class="tok-status" style="color:var(--green)"><div class="cdot" style="background:var(--green);width:6px;height:6px;border-radius:50%"></div>Connected</div>
+      <button class="tok-edit">Edit</button>
+    </div>
+
+    <div class="token-card">
+      <div class="tok-ico" style="background:var(--teal-lt);color:var(--teal);border:1px solid var(--teal-bd)">CF</div>
+      <div class="tok-info">
+        <div class="tok-name">Confluence</div>
+        <div class="tok-endpoint">hpe.atlassian.net/wiki · CQL Search · Used by: Enrichment Agent</div>
+      </div>
+      <div class="tok-val">••••••••••••••••••</div>
+      <div class="tok-status" style="color:var(--green)"><div class="cdot" style="background:var(--green);width:6px;height:6px;border-radius:50%"></div>Connected</div>
+      <button class="tok-edit">Edit</button>
+    </div>
+
+    <div class="token-card">
+      <div class="tok-ico" style="background:var(--green-lt);color:var(--green);border:1px solid var(--green-bd)">CP</div>
+      <div class="tok-info">
+        <div class="tok-name">Customer Portal</div>
+        <div class="tok-endpoint">portal.hpe.com · REST API · Used by: Context Agent</div>
+      </div>
+      <div class="tok-val">••••••••••••••••••</div>
+      <div class="tok-status" style="color:var(--green)"><div class="cdot" style="background:var(--green);width:6px;height:6px;border-radius:50%"></div>Connected</div>
+      <button class="tok-edit">Edit</button>
+    </div>
+
+    <div style="margin-top:12px;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text3);padding:10px 14px;background:var(--white);border:1px solid var(--border);border-radius:8px">
+      ⓘ Triage results are not stored — data is fetched live from source systems and discarded after each session. Click any row to re-run the triage for that bug.
+    </div>
+  </div>
+</div>
+
+<!-- RE-RUN MODAL -->
+<div id="rerun-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:200;align-items:center;justify-content:center">
+  <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:36px 40px;max-width:440px;width:90%;box-shadow:0 8px 40px rgba(0,0,0,.14)">
+    <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px">Re-run Triage?</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:8px">
+      Previous triage results for <strong id="rerun-id" style="font-family:'JetBrains Mono',monospace;color:var(--blue)"></strong> are not stored.
+    </div>
+    <div style="font-size:12px;color:var(--text3);background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:9px 12px;margin-bottom:24px;font-family:'JetBrains Mono',monospace">
+      ⓘ Previous session results are not stored. Data is fetched live from external systems — short-term API cache (Redis · 5-min TTL) may apply.
+    </div>
+    <div style="display:flex;gap:10px">
+      <button onclick="closeRerun()" style="flex:1;height:42px;border-radius:8px;border:1px solid var(--border);background:var(--bg);font-family:'Sora',sans-serif;font-size:13px;color:var(--text2);cursor:pointer">Cancel</button>
+      <button onclick="startRerun()" style="flex:1;height:42px;border-radius:8px;border:none;background:var(--teal);font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:#fff;cursor:pointer">▶ Re-run Triage</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let rerunBugId='', rerunSource='';
+function rerunConfirm(bugId, source){
+  rerunBugId=bugId; rerunSource=source;
+  document.getElementById('rerun-id').textContent=bugId;
+  const ov=document.getElementById('rerun-overlay');
+  ov.style.display='flex';
+}
+function closeRerun(){
+  document.getElementById('rerun-overlay').style.display='none';
+}
+function startRerun(){
+  document.getElementById('rerun-overlay').style.display='none';
+  // switch nav to New Triage
+  document.querySelectorAll('.tb-nav a').forEach((a,i)=>a.classList.toggle('active',i===0));
+  goLoading();
+}
+
+function switchNav(el, screenId){
+  // update nav active
+  document.querySelectorAll('.tb-nav a').forEach(a=>a.classList.remove('active'));
+  el.classList.add('active');
+  // show screen
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));
+  document.getElementById(screenId).classList.add('show');
+}
+
+function goInput(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));
+  document.getElementById('s-input').classList.add('show');
+  document.querySelectorAll('.tb-nav a').forEach((a,i)=>{a.classList.toggle('active',i===0)});
+}
+
+function goResults(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));
+  document.getElementById('s-results').classList.add('show');
+}
+
+function goLoading(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));
+  document.getElementById('s-loading').classList.add('show');
+
+  // Reset all
+  ['ico1','ico2','ico3','ico4'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    el.className='agent-ico wait';
+    el.textContent='①②③④'[i];
+  });
+  ['st1','st2','st3','st4'].forEach(id=>{
+    document.getElementById(id).className='agent-status wait';
+    document.getElementById(id).textContent='Waiting';
+  });
+  document.getElementById('par-note').style.display='none';
+  setProgress(0,'Phase 1 — Context Agent running…');
+
+  setAgent('ico1','running');setStat('st1','running','Running…');
+  setProgress(10,'Phase 1 — Context Agent running…');
+
+  setTimeout(()=>{
+    setAgent('ico1','done');setStat('st1','done','✓ 2.1s');
+    setProgress(30,'Phase 2 — Cross-System Fetch + Enrichment running in parallel…');
+    document.getElementById('par-note').style.display='block';
+    setAgent('ico2','running');setStat('st2','running','Running…');
+    setAgent('ico3','running');setStat('st3','running','Running…');
+
+    setTimeout(()=>{
+      setAgent('ico3','done');setStat('st3','done','✓ 3.2s');
+      setProgress(55,'Phase 2 — Cross-System Fetch still running…');
+    },1200);
+
+    setTimeout(()=>{
+      setAgent('ico2','done');setStat('st2','done','✓ 3.8s');
+      setProgress(70,'Phase 3 — AI Synthesis running…');
+      setAgent('ico4','running');setStat('st4','running','Processing…');
+
+      setTimeout(()=>{
+        setAgent('ico4','done');setStat('st4','done','✓ 4.6s');
+        setProgress(100,'Complete — 10.7s');
+        setTimeout(()=>{
+          document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));
+          document.getElementById('s-results').classList.add('show');
+        },600);
+      },1800);
+    },1800);
+  },1400);
+}
+
+function setAgent(id,state){
+  const el=document.getElementById(id);
+  const num=el.textContent;
+  el.className='agent-ico '+state;
+  el.textContent=state==='done'?'✓':num;
+}
+function setStat(id,state,txt){
+  const el=document.getElementById(id);
+  el.className='agent-status '+state;
+  el.textContent=txt;
+}
+function setProgress(pct,label){
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('prog-pct').textContent=pct+'%';
+  document.getElementById('prog-label').textContent=label;
+}
+</script>
+</body>
+</html>
