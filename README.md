@@ -32,10 +32,11 @@ Our system uses intelligent agents to:
 
 ## Project Structure
 
-* `docs/` → Detailed documentation
-* `ppts/` → Presentations
 * `designs/` → Architecture diagrams
+* `docs/` → Detailed documentation
 * `meeting-notes/` → Meeting notes & discussion references 
+* `ppts/` → Presentation slide decks and checkpoints
+* `ui-mockup/` — Frontend mockups and HTML prototypes.
 
 ---
 
