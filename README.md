@@ -2,7 +2,7 @@
 
 ## Overview
 
-Agentic Bug Triage is an AI-powered system that simplifies bug triage across multiple tracking systems like Jira and Bugzilla by providing a unified interface.
+Agentic Bug Triage is an AI-powered system that simplifies bug triage across multiple tracking systems like Jira, Bugzilla and Github by providing a unified interface. The system reduces manual triage time using a multi-agent AI pipeline.
 
 ---
 
