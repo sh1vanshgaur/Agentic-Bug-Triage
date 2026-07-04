@@ -47,10 +47,11 @@ The **Agentic Bug Triage & Routing System** eliminates this manual overhead. It 
 
 | Deliverable | Formats / Paths |
 | :--- | :--- |
-| **Software Design Document (SDD)** | 📄 [PDF (docs/)](docs/Software%20Design%20Document.pdf) \| 📁 [PDF (demo/)](Final%20Demo%20CPP%203/Software%20Design%20Document.pdf) |
-| **User Manual** | 📄 [PDF (docs/)](docs/Agentic_Bug_Triage_Routing_System_User_Manual.pdf) \| 📁 [PDF (demo/)](Final%20Demo%20CPP%203/Agentic_Bug_Triage_Routing_System_User_Manual.pdf) |
-| **Final Presentation (PPT)** | 📊 [PPTX (ppts/)](ppts/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pptx) \| 📁 [PPTX (demo/)](Final%20Demo%20CPP%203/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pptx) \| 📁 [PDF version](Final%20Demo%20CPP%203/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pdf) |
 | **Source Code Repository** | 🌐 [GitHub Remote](https://github.com/pulkitjn3010/agentic-bug-triage-and-routing) \|
+| **Software Design Document (SDD)** | 📁 [PDF (demo/)](Final%20Demo%20CPP%203/Software%20Design%20Document.pdf) |
+| **User Manual** | 📁 [PDF (demo/)](Final%20Demo%20CPP%203/Agentic_Bug_Triage_Routing_System_User_Manual.pdf) |
+| **Final Presentation (PPT)** | 📁 [PPTX (demo/)](Final%20Demo%20CPP%203/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pptx) \| 📁 [PDF version](Final%20Demo%20CPP%203/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pdf) |
+
 
 ---
 
