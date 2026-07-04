@@ -96,7 +96,7 @@ agentic-bug-triage-and-routing/
 
 ### 📄 System Design & Documentation
 * **[Software Design Document (SDD)](docs/Software%20Design%20Document.pdf)**
-  * *Description:* Outlines the complete technical blueprints of the system. Includes details on MCP connector architecture, caching strategies, agent orchestration workflows, database models, sequence diagrams, and crash recovery mechanisms.
+  * *Description:* Outlines the complete technical blueprints of the system. Includes details on connector architecture, caching strategies, agent orchestration workflows, database models, sequence diagrams, and crash recovery mechanisms.
   * *Alternative Demo Version:* [Final Demo CPP 3/Software Design Document.pdf](Final%20Demo%20CPP%203/Software%20Design%20Document.pdf)
 * **[User Manual](docs/Agentic_Bug_Triage_Routing_System_User_Manual.pdf)**
   * *Description:* Step-by-step instructions for end-users and administrators. Explains how to integrate different trackers (Jira, Bugzilla, GitHub), configure tokens/tokens settings, search and filter bugs, and manually manage triage updates.
