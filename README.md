@@ -91,8 +91,8 @@ agentic-bug-triage-and-routing/
 
 ### 🌐 Source Code & Repositories
 * **[Source Code Repository](https://github.com/pulkitjn3010/agentic-bug-triage-and-routing)**
-  * *Description:* Holds interactive UI mockups, technical documentation, architectural drawings, presentation decks, and collaboration history for the system.
-  * *Local Workspace Directory:* [Agentic-Bug-Triage Root Folder](./)
+  * *Description:* Contains the complete source code for the Agentic Bug Triage system, including backend services, APIs, data processing pipelines, AI agents, connector integrations, configuration files, and project dependencies.
+    
 
 ### 📄 System Design & Documentation
 * **[Software Design Document (SDD)](docs/Software%20Design%20Document.pdf)**
@@ -103,12 +103,18 @@ agentic-bug-triage-and-routing/
   * *Alternative Demo Version:* [Final Demo CPP 3/Agentic_Bug_Triage_Routing_System_User_Manual.pdf](Final%20Demo%20CPP%203/Agentic_Bug_Triage_Routing_System_User_Manual.pdf)
 
 ### 📊 Project Presentation & Proposal
-* **[Final Presentation (PPTX)](ppts/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pptx)**
-  * *Description:* A comprehensive PowerPoint deck summarizing the business impact, system requirements, architecture implementation, live-demo highlights, and next steps.
-  * *Alternative Demo Version (PPTX):* [Final Demo CPP 3/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pptx](Final%20Demo%20CPP%203/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pptx)
-  * *Alternative Demo Version (PDF):* [Final Demo CPP 3/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pdf](Final%20Demo%20CPP%203/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pdf)
-* **[Solution Proposal](docs/Agentic_Bug_Triage_SOLUTION_PROPOSAL.pdf)**
-  * *Description:* The initial project pitch and proposal outlining the architectural roadmap and anticipated outcomes.
+
+- **Final Presentation**
+  - *Description:* A comprehensive PowerPoint deck summarizing the business impact, system requirements, architecture implementation, live-demo highlights, and next steps.
+  - **Downloads:**
+    - [Presentation (PPTX)](ppts/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pptx)
+    - [Demo Presentation (PPTX)](Final%20Demo%20CPP%203/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pptx)
+    - [Demo Presentation (PDF)](Final%20Demo%20CPP%203/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pdf)
+
+- **Solution Proposal**
+  - *Description:* The initial project proposal outlining the problem statement, architectural roadmap, implementation strategy, and expected outcomes.
+  - **Document:**
+    - [Solution Proposal (PDF)](docs/Agentic_Bug_Triage_SOLUTION_PROPOSAL.pdf)
 
 ### 🎥 Video Demonstration Recordings
 * **[Problem Demonstration Video (YouTube)](https://www.youtube.com/watch?v=gOyspIhLMJc)**
