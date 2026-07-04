@@ -27,7 +27,7 @@
 - [Overview](#-overview)
 - [⚡ Quick Links to Key Deliverables](#-quick-links-to-key-deliverables)
 - [Project Directory Structure](#-project-directory-structure)
-- [📌 Special Mention: Reference Links & Core Documents](#-special-mention-reference-links--core-documents)
+- [📌 Reference Links & Core Documents](#-special-mention-reference-links--core-documents)
 - [The Problem We Solve](#-the-problem-we-solve)
 - [Key Features](#-key-features)
 - [Team Contributions](#-team-contributions)
