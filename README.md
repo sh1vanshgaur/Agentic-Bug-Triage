@@ -25,9 +25,9 @@
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
-- [⚡ Quick Links to Key Deliverables](#-quick-links-to-key-deliverables)
+- [Quick Links to Key Deliverables](#-quick-links-to-key-deliverables)
 - [Project Directory Structure](#-project-directory-structure)
-- [📌 Reference Links & Core Documents](#-special-mention-reference-links--core-documents)
+- [Reference Links & Core Documents](#-special-mention-reference-links--core-documents)
 - [The Problem We Solve](#-the-problem-we-solve)
 - [Key Features](#-key-features)
 - [Team Contributions](#-team-contributions)
@@ -47,10 +47,10 @@ The **Agentic Bug Triage & Routing System** eliminates this manual overhead. It 
 
 | Deliverable | Formats / Paths |
 | :--- | :--- |
-| **Source Code Repository** | 🌐 [GitHub Remote](https://github.com/pulkitjn3010/agentic-bug-triage-and-routing) \|
-| **Software Design Document (SDD)** | 📁 [PDF (demo/)](Final%20Demo%20CPP%203/Software%20Design%20Document.pdf) |
-| **User Manual** | 📁 [PDF (demo/)](Final%20Demo%20CPP%203/Agentic_Bug_Triage_Routing_System_User_Manual.pdf) |
-| **Final Presentation (PPT)** | 📁 [PPTX (demo/)](Final%20Demo%20CPP%203/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pptx) \| 📁 [PDF version](Final%20Demo%20CPP%203/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pdf) |
+| **Source Code Repository** | 🌐 [GitHub Remote](https://github.com/pulkitjn3010/agentic-bug-triage-and-routing) |
+| **Software Design Document (SDD)** | 📁 [PDF (demo)](Final%20Demo%20CPP%203/Software%20Design%20Document.pdf) |
+| **User Manual** | 📁 [PDF (demo)](Final%20Demo%20CPP%203/Agentic_Bug_Triage_Routing_System_User_Manual.pdf) |
+| **Final Presentation (PPT)** | 📁 [PPTX (demo)](Final%20Demo%20CPP%203/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pptx) \| 📁 [PDF version](Final%20Demo%20CPP%203/HPE%20CPP%203%20Final%20Presentation-%20Agentic%20Bug%20Triage%20and%20Routing.pdf) |
 
 
 ---
@@ -66,18 +66,22 @@ agentic-bug-triage-and-routing/
 │   ├── HLD_v3.png           # High-Level Design diagram version 3
 │   ├── POC Architecture.png # Proof of Concept architecture layout
 │   └── Reference_...        # Mentor-suggested reference architecture
+|
 ├── docs/                    # Official documentation and guidelines
 │   ├── Software Design Document.pdf
 │   ├── Agentic_Bug_Triage_Routing_System_User_Manual.pdf
 │   ├── Agentic_Bug_Triage_SOLUTION_PROPOSAL.pdf
 │   ├── Team-Contributions.pdf
 │   └── problem-statement.md
+|
 ├── ppts/                    # Slide decks detailing progress and meetings
 │   ├── HPE CPP 3 Final Presentation- Agentic Bug Triage and Routing.pptx
 │   └── Checkpoint/Meeting presentations
+|
 ├── ui-mockup/               # Interactive UI mockups
 │   ├── Bug_Triage_Mockup_v1.html
 │   └── Bug_Triage_Mockup_v2.html
+|
 ├── meeting-notes/           # Collaboration notes & recording links
 └── Final Demo CPP 3/        # Collected assets for the final project delivery
 ```
@@ -147,12 +151,19 @@ For complete context on project milestones and meeting details, see:
 ## ✨ Key Features
 
 - **🌐 Unified Bug Dashboard** — Aggregates a near real-time, read-only view of open issues across JIRA (Cloud & On-Prem), GitHub, Bugzilla, and Confluence.
+
 - **🤖 Four-Agent Autonomous Pipeline** — `ContextFetchAgent` → `CrossSystemFetchAgent` + `EnrichmentAgent` (parallel) → `AISynthesisAgent`.
+
 - **⚡ Progressive WebSocket Streaming** — Results are streamed panel-by-panel as each agent completes. Engineers see data within seconds, not minutes.
+
 - **🎯 Structured AI Triage Output** — Generates severity (P0–P3), root-cause hypothesis, confidence score, affected components, and recommended actions.
+
 - **📊 Cross-System Correlation** — Identifies duplicate and semantically related issues across all connected systems using multi-query LLM search and similarity scoring.
+
 - **📚 Knowledge Base Enrichment** — Uses a ReAct (Reason + Act) loop to iteratively search Confluence and surface relevant runbooks and historical fixes.
+
 - **🔌 Dynamic Connector Registry** — New source systems can be added via configuration without touching pipeline logic.
+
 - **🛡️ Fault-Tolerant Architecture** — Kafka-backed event processing with PostgreSQL pipeline checkpointing enables crash recovery mid-triage.
 
 ---
@@ -162,11 +173,20 @@ For complete context on project milestones and meeting details, see:
 ## 👥 Team Contributions
 
 ### Collaborative Design
-The entire system architecture and documentation were designed collaboratively by all team members, including:
-- High-Level Design (HLD) & Software Design Document (SDD)
-- Agent workflow design & sequence diagrams
-- Database schema & connector architecture
-- Technology evaluation & design reviews
+The system architecture, design artifacts, and core documentation were developed collaboratively by the project team. Key contributions included:
+
+- High-Level Design (HLD) and the Software Design Document (SDD)
+- Agent workflow designs and sequence diagrams
+- Database schema and connector architecture
+- Technology evaluation and design reviews
+
+This project was delivered by a dedicated team of five:
+
+- [Pulkit Jain](https://github.com/pulkitjn3010)
+- [Shivansh Gaur](https://github.com/sh1vanshgaur)
+- [Disha Jain](https://github.com/DishaJn2)
+- [Anuj Modani](https://github.com/animus08)
+- [Om Jain](https://github.com/Omjain27112005)
 
 ---
 
